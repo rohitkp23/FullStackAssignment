@@ -1,0 +1,16 @@
+#This property file contains lot of buit-in properties.
+#We just have to write values for that property
+
+#embedded server config properties
+#server.post=8081
+
+#Data source config properties
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/sms_jpa_db
+spring.datasource.username=root
+spring.datasource.password=rkp23
+
+#jpa config properties
+spring.jpa.hibernate.ddl_auto=update
+spring.jpa.show-sql=true
+spring.jpa.hibernate.properties.hibernate.format_sql=true

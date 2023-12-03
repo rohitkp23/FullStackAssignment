@@ -1,0 +1,73 @@
+package in.co.vwits.sms.rest.controller;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.co.vwits.model.exception.UserNotFoundException;
+import in.co.vwits.sms.model.User;
+import in.co.vwits.sms.service.UserService;
+
+@RestController
+@RequestMapping(value="/api/user")
+public class UserRestController {
+	
+	@Autowired
+	private UserService service;
+	
+	@GetMapping
+	public List<User> findAll(){
+		return service.findAll();
+	}
+	
+	@PostMapping
+	public User createNewUser(@RequestBody User user) {
+		this.service.save(user);
+		return user;
+	}
+	
+	@GetMapping("/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable int userId) {
+        try {
+            Optional<User> user = service.findByUserId(userId);
+            return ResponseEntity.ok(user.orElse(null));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+	
+	@DeleteMapping(value="/{userId}")
+	public void deleteUserByUserId(@PathVariable int userId) {
+		this.service.deleteByUserId(userId);
+	}
+	
+	 @PostMapping("/login")
+	    public ResponseEntity<Boolean> login(@RequestBody User user) {
+	        try {
+	            boolean loggedIn = service.authenticateUser(user.getUsername());
+	            return ResponseEntity.ok(loggedIn);
+	        } catch (Exception e) {
+	            // Handle authentication exception (e.g., invalid credentials)
+	            return ResponseEntity.status(401).body(false);
+	        }
+	  }
+	 
+	 @GetMapping("/role/{username}")
+	 public ResponseEntity<Map<String, String>> getUserRoleByUsername(@PathVariable String username) {
+	     String userRole = service.getUserRoleByUsername(username);
+		 Map<String, String> response = Collections.singletonMap("role", userRole);
+		 return ResponseEntity.ok(response);
+	 }
+	
+}

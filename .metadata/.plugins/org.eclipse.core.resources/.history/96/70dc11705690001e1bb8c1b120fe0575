@@ -1,0 +1,21 @@
+package in.co.vwits.sms.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import in.co.vwits.sms.model.UserCredentials;
+import in.co.vwits.sms.repository.UserCredentialsRepository;
+
+public class User {
+
+	 private final UserCredentialsRepository userCredentialsRepository;
+
+	    @Autowired
+	    public User(UserCredentialsRepository userCredentialsRepository) {
+	        this.userCredentialsRepository = userCredentialsRepository;
+	    }
+
+	    public boolean authenticateUser(String username, String password) {
+	        UserCredentials user = userCredentialsRepository.findByUsername(username);
+	        return user != null && user.getPassword().equals(password);
+	    }
+}

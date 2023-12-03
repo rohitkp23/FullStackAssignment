@@ -1,0 +1,57 @@
+package in.co.vwits.sms.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import in.co.vwits.model.exception.UserNotFoundException;
+import in.co.vwits.sms.model.User;
+import in.co.vwits.sms.repository.UserRepository;
+import in.co.vwits.sms.response.LoginResponse;
+import in.co.vwits.sms.service.UserService;
+
+@Service
+@Transactional
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Override
+	public List<User> findAll(){
+		return repo.findAll();
+	}
+
+	@Override
+	public void save(User usr)
+	{
+		repo.save(usr);
+	}
+	
+	@Override
+	public void deleteByUserId(int userId) 
+	{
+		repo.deleteById(userId);
+	}
+	
+	@Override
+	public Optional<User> findByUserId(int userId) throws UserNotFoundException {
+	    return repo.findById(userId);
+	}
+	
+	@Override
+	public boolean authenticateUser(String userName) {
+	    return repo.findByUserName(userName)
+	            .isPresent();
+	}
+	
+	@Override
+	public LoginResponse loginUser(User user) {
+		return null;
+	}
+	
+
+}

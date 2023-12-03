@@ -1,0 +1,9 @@
+package in.co.vwits.sms.service.impl;
+
+import in.co.vwits.sms.service.UserService;
+
+public class UserServiceImpl implements UserService {
+
+	 
+	    
+}

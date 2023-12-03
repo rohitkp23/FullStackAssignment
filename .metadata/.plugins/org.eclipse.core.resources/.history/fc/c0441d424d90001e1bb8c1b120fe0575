@@ -1,0 +1,5 @@
+package in.co.vwits.sms.model;
+
+public class UserCredentials {
+
+}

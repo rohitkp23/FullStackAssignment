@@ -1,0 +1,31 @@
+<body>
+        <form (ngSubmit)="addStudent()">
+            <h1>Add Student</h1>
+            <mat-form-field>
+                <mat-label>Roll Number:</mat-label>
+                <input matInput type="number" id="rollno" name="rollno" required [(ngModel)]="newStudent.rollno">    
+            </mat-form-field>
+           <br><br>
+            <mat-form-field>
+                <mat-label>Name:</mat-label>
+                <input matInput type="text" id="name" name="name" required [(ngModel)]="newStudent.name">
+            </mat-form-field>
+            <br><br>
+            <mat-form-field>
+                <mat-label>Number of attempts:</mat-label>
+                <input matInput type="number" id="numberOfAttempts" name="numberOfAttempts" required [(ngModel)]="newStudent.numberOfAttempts">
+            </mat-form-field>
+            <br><br>
+            <mat-form-field>
+                <mat-label>Percentage:</mat-label>
+                <input matInput type="number" id="percentage" name="percentage" required [(ngModel)]="newStudent.percentage">
+            </mat-form-field>
+            <br><br>
+            <mat-form-field>
+                <mat-label>Subjects learning:</mat-label>
+                <textarea matInput name="subjectsLearning" [(ngModel)]="newStudent.subjectsLearning"></textarea>
+            </mat-form-field>
+            <br><br>
+            <button mat-raised-button color="primary" type="submit">Add Student</button>
+        </form> 
+</body>

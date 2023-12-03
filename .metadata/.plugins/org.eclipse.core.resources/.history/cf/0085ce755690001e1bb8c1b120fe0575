@@ -1,0 +1,11 @@
+package in.co.vwits.sms.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import in.co.vwits.sms.model.UserCredentials;
+
+public interface UserCredentialsRepository extends JpaRepository <UserCredentials, Long> {
+	
+	UserCredentials findByUsername(String username);
+
+}

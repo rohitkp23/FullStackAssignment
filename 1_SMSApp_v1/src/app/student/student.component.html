@@ -1,0 +1,34 @@
+<app-sort (sortSelected)="sortStudents($event)"></app-sort>
+<body>
+<table *ngIf="students.length>0">
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Name</th>     
+            <th>Attempts</th>
+            <th>Percentage</th>
+            <th>Subjects Learning</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of students">
+            <td>{{s.rollno}}</td>
+            <td>{{s.name | uppercase}}</td>
+            <td>{{s.numberOfAttempts}}</td>
+            <td>{{s.percentage/100 | percent}}</td>
+            <td>                
+                <ul *ngFor="let sub of s.subjectsLearning">
+                    <li>{{sub}}</li>
+                </ul>
+            </td>
+            <td>
+                <button mat-button style="background-color: red; color:white;" (click)="deleteStudent(s.rollno)">Delete</button>&nbsp;
+                <button  color="warn" mat-raised-button (click)="updateStudent(s)">Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+<span [class] = "colorClass">{{message}}</span>
+</body>
+<app-student-update *ngIf="updateClicked" [updatedStudent]="selectedStudent" (studentEmitter)="doUpdate($event)"></app-student-update>

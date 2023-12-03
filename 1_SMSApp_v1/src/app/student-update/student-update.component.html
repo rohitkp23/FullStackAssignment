@@ -1,0 +1,30 @@
+<body><form (ngSubmit)="performUpdate()">
+        <h3>Update Student Information</h3>
+        <mat-form-field>
+                <mat-label>Roll Number:</mat-label>
+                <input matInput type="text" [(ngModel)]="updatedStudent.rollno" name="rollno" readonly>
+        </mat-form-field>
+        <br><br>
+        <mat-form-field>
+                <mat-label>Name:</mat-label>
+                <input matInput type="text" [(ngModel)]="updatedStudent.name" name="name" readonly>
+        </mat-form-field>
+        <br><br>
+        <mat-form-field>
+                <mat-label>Number of Attempts:</mat-label>
+                <input matInput type="number" [(ngModel)]="updatedStudent.numberOfAttempts" name="numberOfAttempts">
+        </mat-form-field>
+        <br><br>
+        <mat-form-field>
+                <mat-label>Percentage:</mat-label>
+                <input matInput type="number" [(ngModel)]="updatedStudent.percentage" name="percentage">
+        </mat-form-field>
+        <br><br>
+        <mat-form-field>
+                <mat-label>Subjects Learning:</mat-label>
+                <textarea matInput [(ngModel)]="updatedStudent.subjectsLearning" name="subjectsLearning"></textarea>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button color="primary" type="submit">Update</button>
+</form>
+</body>

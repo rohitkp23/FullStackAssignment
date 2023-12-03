@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-icon (click)="s.toggle()">menu</mat-icon>
+  <span>
+    Student Management App
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #s opened="true" mode="push">
+      <a *ngIf="service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/home">Home</a>
+      <a *ngIf="!service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/login">Login</a>
+      <a *ngIf="!service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/signup">Signup</a>
+      <a *ngIf="service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/students">Students</a>
+      <a *ngIf="service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/register">Add Student</a>
+      <a *ngIf="service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/updateprofile">Update Profile</a>
+      <a (click)="toggleSidebar()" routerLink="/contactus">Contact Us</a>
+      <a (click)="toggleSidebar()"routerLink="/aboutus">About Us</a>
+      <a *ngIf="service.isUserLoggedIn" (click)="toggleSidebar()" routerLink="/logout">Log out</a>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container> 
+
+    

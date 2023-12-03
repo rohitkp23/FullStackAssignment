@@ -1,0 +1,17 @@
+package in.co.vwits.sms.service;
+
+import java.util.List;
+
+import in.co.vwits.sms.model.User;
+
+public interface UserService {
+	
+	void save(User usr);
+	
+	void deleteByUserId(int userId);
+	
+	List<User> findAll();
+	
+	User findByUserId(int userId);
+
+}
